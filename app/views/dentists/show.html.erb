@@ -1,10 +1,3 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @dentist %>
-
-<div>
-  <%= link_to "Edit this dentist", edit_dentist_path(@dentist) %> |
-  <%= link_to "Back to dentists", dentists_path %>
-
-  <%= button_to "Destroy this dentist", @dentist, method: :delete %>
-</div>
+<h1>Showing Dentist Details</h1>
+<p>Name: <%= @dentist.name %></p>
+<p>Registered: <%= @dentist.registration_status ? "Yes" : "Not sure" %></p>
