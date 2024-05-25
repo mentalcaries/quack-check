@@ -1,0 +1,30 @@
+<%= form_with model: @dentist do |form| %>
+
+  <div>
+  <% if form.object.errors.any? %>
+    <% form.object.errors.full_messages.each do |message| %>
+      <p><%= message %> </p>
+    <% end %>
+  <% end %>
+  </div>
+  <div>
+    <%= form.label :name%>
+    <%= form.text_field :name%>
+  </div>
+  <div>
+    <%= form.label :registration_status%>
+    <fieldset>
+      <%= form.radio_button :registration_status, true %>
+      <%= form.label :registered, "Registered" %>
+      <%= form.radio_button :registration_status, false %>
+      <%= form.label :unverified, "Unverified" %>
+    </fieldset>
+  </div>
+
+  <div>
+    <%= form.label :registered_since %>
+    <%= form.date_field :registered_since %>
+  </div>
+
+<%= form.submit %>
+<% end %>

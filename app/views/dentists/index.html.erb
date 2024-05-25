@@ -10,8 +10,8 @@
   <tbody>
     <% @dentists.each do |dentist| %>
     <tr>
-      <td> <%= dentist.name %> </td>
-      <td><%= dentist.registration_status ? "Registered" : "Not Verfied" %></td>
+      <td> <%= link_to dentist.name, dentist %> </td>
+      <td><%= dentist.registration_status ? "Registered" : "Not Verified" %></td>
       <td><%= dentist.registered_since %></td>
     </tr>
     <% end %>
