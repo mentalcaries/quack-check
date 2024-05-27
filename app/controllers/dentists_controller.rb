@@ -1,7 +1,8 @@
 class DentistsController < ApplicationController
 
+  before_action :set_dentist, except: [:index, :new, :create]
+
   def show
-    @dentist = Dentist.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path
   end
@@ -11,7 +12,6 @@ class DentistsController < ApplicationController
   end
 
   def edit
-    @dentist = Dentist.find( params[:id])
   end
 
   def new
@@ -19,7 +19,6 @@ class DentistsController < ApplicationController
   end
 
   def update
-    @dentist = Dentist.find(params[:id])
     if @dentist.update(dentist_post_params)
       redirect_to @dentist
     else
@@ -37,9 +36,18 @@ class DentistsController < ApplicationController
 
   end
 
+  def destroy
+    @dentist.destroy
+    redirect_to dentists_path
+  end
+
 
   def dentist_post_params
     params.require(:dentist).permit(:name, :registration_status, :registered_since)
+  end
+
+  def set_dentist
+    @dentist = Dentist.find(params[:id])
   end
 
 end
