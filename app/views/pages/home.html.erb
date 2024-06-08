@@ -1,1 +1,33 @@
-<h1>Hello, world!</h1>
+
+<h1>Currently Registered Dentists</h1>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <%# <th>Registration Status</th> %>
+      <th>Registered Since</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @business_profile.each do |dentist| %>
+    <tr>
+      <td> <%= "#{dentist["LastName"]}, #{dentist["FirstName"]}".titleize %> </td>
+      <td>
+          <% begin %>
+            <% if dentist['RDate'].present? %>
+              <% date = Date.parse(dentist['RDate']) %>
+              <%= date.strftime("%B %d, %Y") %>
+            <% else %>
+              No date provided
+            <% end %>
+          <% rescue ArgumentError, TypeError %>
+            Invalid date
+          <% end %>
+        </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
